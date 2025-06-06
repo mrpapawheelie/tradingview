@@ -8,8 +8,8 @@ This repository contains TradingView PineScript v6 indicators and strategies for
 .
 ├── competitions/    # Social proof and results from competitions (Credexium signals)
 │   └── theleap/2025/june/trades.md
-├── indicators/      # Technical analysis indicators
-└── strategies/      # Trading strategies
+├── indicators/      # Free technical analysis indicators
+└── strategies/      # Free trading strategies
 ```
 
 ## Competitions & Social Proof
@@ -18,16 +18,15 @@ This repository contains TradingView PineScript v6 indicators and strategies for
 - These signals are **not** given away for free. The included `trades.md` files are for social proof only.
 - If you want access to Credexium signals, stay tuned for future opportunities!
 
-## Script Categories
+## Free Indicators
 
-### Indicators
-- Technical analysis indicators that can be used for market analysis
-- Each indicator is a standalone script that can be used on TradingView charts
+- The `indicators/` directory contains free, open-source technical analysis indicators for TradingView.
+- Anyone can use, modify, or contribute to these scripts.
 
-### Strategies
-- Complete trading strategies with entry/exit rules
-- Includes backtesting capabilities
-- Each strategy can be used for automated trading or manual trading signals
+## Free Strategies
+
+- The `strategies/` directory contains free, open-source trading strategies for TradingView.
+- These are provided for educational and research purposes.
 
 ## Usage
 
