@@ -1,0 +1,48 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © officialpapawheelie
+
+//@version=6
+strategy("Buy 25% Off Weekly High, TP 15%", overlay=true, initial_capital=1000, currency=currency.USD, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+// Inputs for strategy customization
+lookbackPeriod = input.int(20, "Lookback Period", minval=10, maxval=200)
+dropPercentage = input.float(10.0, "Drop Percentage", minval=5.0, maxval=30.0, step=1.0)
+minBarsBetweenTrades = input.int(3, "Minimum Bars Between Trades", minval=1, maxval=20)
+
+// Time-based filtering for current trend
+var int _thirtyDaysAgo = timenow - 30 * 24 * 60 * 60 * 1000
+inLast30Days = time >= _thirtyDaysAgo
+
+// Track last trade bar
+var int lastTradeBar = 0
+
+// 1) Compute the highest and lowest prices over the lookback period
+highestPrice = ta.highest(high, lookbackPeriod)
+lowestPrice = ta.lowest(low, lookbackPeriod)
+
+// 2) Calculate the drop level from the high
+dropLevel = highestPrice * (1 - dropPercentage/100)  // Convert percentage to decimal
+
+// 3) Entry conditions
+barsSinceLastTrade = bar_index - lastTradeBar
+canTrade = barsSinceLastTrade >= minBarsBetweenTrades
+
+if close <= dropLevel and inLast30Days and canTrade
+    strategy.entry("Long", strategy.long)
+    lastTradeBar := bar_index
+
+// 4) Take profit at 20% above entry price
+tp = strategy.position_avg_price * 1.2
+if strategy.position_size > 0
+    strategy.exit("Take Profit", from_entry="Long", limit=tp)
+
+// Plot levels for visual reference
+plot(dropLevel, "Drop Level", color=color.red, style=plot.style_line)
+plot(highestPrice, "High", color=color.green, style=plot.style_line)
+plot(lowestPrice, "Low", color=color.blue, style=plot.style_line)
+
+// Optional: Plot the bars offset where high/low occurred
+var highestBarOffset = ta.highestbars(high, lookbackPeriod)
+var lowestBarOffset = ta.lowestbars(low, lookbackPeriod)
+plotshape(highestBarOffset == 0, "Highest Bar", shape.triangleup, location.belowbar, color.green)
+plotshape(lowestBarOffset == 0, "Lowest Bar", shape.triangledown, location.abovebar, color.blue) 
