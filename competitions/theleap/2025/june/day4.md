@@ -46,9 +46,3 @@
 <br/>
 
 ---
-
-## Raw Trade Log
-
-```
-// The raw trade log is shown below for transparency.
-// ...
