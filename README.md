@@ -9,7 +9,6 @@ This repository contains TradingView PineScript v6 indicators and strategies for
 ```
 .
 ├── competitions/    # Social proof and results from competitions (Credexium signals)
-│   └── theleap/2025/june/trades.md
 ├── indicators/      # Free technical analysis indicators
 └── strategies/      # Free trading strategies
 ```
