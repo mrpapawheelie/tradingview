@@ -1,5 +1,7 @@
 # TradingView PineScript v6 Repository
 
+**Follow my live trading and updates on X (Twitter): [@mrpapawheelie](https://x.com/mrpapawheelie)**
+
 This repository contains TradingView PineScript v6 indicators and strategies for technical analysis and automated trading.
 
 ## Repository Structure
