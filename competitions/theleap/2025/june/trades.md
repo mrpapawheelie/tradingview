@@ -36,7 +36,7 @@ The competition started with $100,000. This file documents all trades and result
 
 ## Social Proof — Leaderboard (Day 4)
 
-![Leaderboard](../../../assets/day4.png)
+![Leaderboard](../../../../assets/day4.png)
 
 ---
 
