@@ -1,0 +1,21 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © officialpapawheelie
+
+//@version=6
+strategy("Dip & Flip 25% TP", overlay=true, initial_capital=1, currency=currency.USD, default_qty_type=strategy.percent_of_equity, default_qty_value=100, pyramiding=0)
+
+//—— INPUTS —————————————————————————————————————
+threshold     = input.float(0.000005, title="Buy Threshold")
+takeProfitPct = input.float(100.0,      title="Take Profit (%)") / 100
+
+//—— ENTRY CONDITION ———————————————————————————
+if (close < threshold) and (strategy.position_size == 0)
+    strategy.entry("Long", strategy.long)
+
+//—— EXIT AT 25% —————————————————————————————
+if (strategy.position_size > 0)
+    tpPrice = strategy.position_avg_price * (1 + takeProfitPct)
+    strategy.exit("Take Profit", from_entry="Long", limit=tpPrice)
+
+//—— VISUALS ————————————————————————————————
+plot(threshold, title="Buy Below", color=color.new(color.green, 0)) 
